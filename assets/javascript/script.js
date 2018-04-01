@@ -62,7 +62,7 @@ $(document).ready(function(){
         
         var tRemainder = timeDifference % retrievedFrequency;
         console.log(tRemainder);
-
+        
         var minutesAway = retrievedFrequency - tRemainder;
         console.log("min away" + minutesAway)
 
@@ -70,9 +70,10 @@ $(document).ready(function(){
         var nextTrain = moment(nextTrainArrivalMin).format("HH:mm");
         console.log(nextTrain);
 
-        $('#tableBody').append("<tr><td>" + retrievedName + "</td><td>" + retrievedDestination + "</td><td>" +
+        function append(){
+            $('#tableBody').append("<tr><td>" + retrievedName + "</td><td>" + retrievedDestination + "</td><td>" +
         retrievedFrequency + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td></tr>"
-      )
-
+        )};
+        append();      
     })
 })
