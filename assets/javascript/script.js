@@ -1,4 +1,5 @@
 $(document).ready(function(){
+// Initialize Firebase---------------------------------
     var config = {
         apiKey: "AIzaSyB_CPky6SxoqaHlRG0iAVv9uVPN0tk4pqU",
         authDomain: "train-scheduler-cb07e.firebaseapp.com",
@@ -9,7 +10,7 @@ $(document).ready(function(){
       };
       firebase.initializeApp(config);
     var database = firebase.database();
-
+// onClick event function----------------------------
     $('#addButton').on("click", function(event){
         event.preventDefault();
 
@@ -19,11 +20,36 @@ $(document).ready(function(){
         var frequencyInput = $("#frequencyInput").val().trim();
         
         var newTrain = {
-            name = trainNameInput,
-            destination = destinationInput,
-            firstTrain = firstTrainInput,
-            frequency = frequencyInput
+            name : trainNameInput,
+            destination : destinationInput,
+            firstTrain : firstTrainInput,
+            frequency : frequencyInput
         }
+        database.ref().push(newTrain);
+
+        console.log(newTrain.name);
+        console.log(newTrain.destination);
+        console.log(newTrain.firstTrain);
+        console.log(newTrain.frequency);
+
+        $("#trainNameInput").val("")
+        $("#destinationInput").val("")
+        $("#firstTrainInput").val("")
+        $("#frequencyInput").val("")
+    });
+// Retrieving from firebase ------------------------
+    database.ref().on("child_added", function(snapshot){
+        console.log(snapshot.val());
+
+        var retrievedName = snapshot.val().name;
+        var retrievedDestination = snapshot.val().destination;
+        var retrievedFirstTrain = snapshot.val().firstTrain;
+        var retrievedFrequency = snapshot.val().frequency;
+
+        console.log(retrievedName);
+        console.log(retrievedDestination);
+        console.log(retrievedFirstTrain);
+        console.log(retrievedFrequency);
         
     })
 })
