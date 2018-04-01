@@ -50,6 +50,29 @@ $(document).ready(function(){
         console.log(retrievedDestination);
         console.log(retrievedFirstTrain);
         console.log(retrievedFrequency);
+
+        var currentTime = moment().format("HH:mm");
+        console.log(currentTime);
+
+        var firstTimeEdited = moment(retrievedFirstTrain, "HH:mm").subtract(1, "years");
+        console.log(firstTimeEdited);
+
+        var timeDifference = moment().diff(moment(firstTimeEdited), "minutes");
+        console.log("time diff" + timeDifference);
         
+        var tRemainder = timeDifference % retrievedFrequency;
+        console.log(tRemainder);
+
+        var minutesAway = retrievedFrequency - tRemainder;
+        console.log("min away" + minutesAway)
+
+        var nextTrainArrivalMin = moment().add(minutesAway, "minutes");
+        var nextTrain = moment(nextTrainArrivalMin).format("HH:mm");
+        console.log(nextTrain);
+
+        $('#tableBody').append("<tr><td>" + retrievedName + "</td><td>" + retrievedDestination + "</td><td>" +
+        retrievedFrequency + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td></tr>"
+      )
+
     })
 })
