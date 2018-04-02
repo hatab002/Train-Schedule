@@ -19,6 +19,7 @@ body{
 .jumbotron{
     text-align: center;
     font-family: 'UnifrakturCook', cursive;
+    font-size: 40px;
     border-radius: 5px;
     color: rgb(172, 37, 27);
     background: url("https://images.pottermore.com/bxd3o8b291gf/3DV0Eo1jOMoOaAyC2c8K4S/d66c552945e41e2877eab82eaa752e22/KingsCross_PM_B1C6M1_HogwartsExpressExterior_Moment.jpg?w=1024");
